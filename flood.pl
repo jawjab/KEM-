@@ -28,10 +28,10 @@ food(canned_mackerel_in_chili_sauce).
 food(pasteurized_milk).
 
 
-victim_has_crop_quantity(5148302313467, 2000).
-victim_has_crop_quantity(5721528510385, 3000).
-victim_has_crop_quantity(1865318712054, 4532).
-victim_has_crop_quantity(5148302313467, 5649).
+victim_has_crop_quantity(rommadon_teedo, 2000).
+victim_has_crop_quantity(tanapon_meesat, 3000).
+victim_has_crop_quantity(akarachai_passavoranan, 4532).
+victim_has_crop_quantity(roiboon_chaiyachit, 5649).
 
 victim_has_cultivated_area(5148302313467, 5342).
 victim_has_cultivated_area(5721528510385, 4359).
@@ -198,4 +198,6 @@ suitable_vehicle(X,A) :- not(car_accessible(X)),not(critical(X)) , has_max_water
 
 suitable_vehicle(X,A) :- not(car_accessible(X)),critical(X) , has_max_water_lvl_tolerance(A, 100).
 
-nearest_center(X , F , C) :- victim_coordinate(X,A,B) , aid_center_coordinate(C,D,E), F is ((D-A)*(D-A))+((E-B)*(E-B)),F < .
+nearest_center(X , F , C) :- victim_coordinate(X,A,B) , aid_center_coordinate(C,D,E), F is ((D-A)*(D-A))+((E-B)*(E-B)),F < G.
+
+suitable_quantity_serve(A,B,C) :- victim_has_crop_quantity(A,B),victim_location_id(A,M),location_id(N,M),growable(C,N).
