@@ -195,6 +195,8 @@ health_condition(roiboon_chaiyachit,aids).
 food_health_condition(canned_mackerel_in_tomatoes_sauce,seafood).
 food_health_condition(canned_mackerel_in_chili_sauce,seafood).
 food_health_condition(pasteurized_milk,milk).
+food_health_condition(congee,liquid).
+food_health_condition(soup,liquid).
 
 quantity_food(canned_mackerel_in_tomatoes_sauce,44000).
 quantity_food(canned_mackerel_in_chili_sauce,34000).
@@ -203,6 +205,11 @@ quantity_food(pasteurized_milk,66669).
 type(canned_mackerel_in_tomatoes_sauce,canned).
 type(canned_mackerel_in_chili_sauce,canned).
 type(pasteurized_milk,uht_milk).
+type(congee,liquid).
+type(soup,liquid).
+
+
+
 
 expired_date(canned_mackerel_in_tomatoes_sauce,09/11/2583).
 expired_date(canned_mackerel_in_chili_sauce,09/11/2583).
@@ -226,11 +233,15 @@ age(X , Y) :- birthyear(X,Z),Y is 2560 - Z.
 
 is_infant(X) :- age(X,Y) , Y < 2.
 
+is_elder(X) :- age(X,Y) , Y > 60.
+
+edible(X,Y) :- is_elder(X), food_health_condition(Y,liquid).
+
 edible(X,Y) :- is_infant(X) , food_health_condition(Y,milk).
 
-edible(X,Y) :- not(is_infant(X)) , sick(X) , food_health_condition(Y,A) , not(A=milk),not(A=seafood).
+edible(X,Y) :- not(is_infant(X)),not(is_elder(X)) ,not(sick(X)) , food_health_condition(Y,A) , not(A=milk).
 
-edible(X,Y) :- not(is_infant(X)) ,not(sick(X)) , food_health_condition(Y,A) , not(A=milk).
+edible(X,Y) :- not(is_infant(X)) , sick(X) , food_health_condition(Y,A) , not(A=milk),not(A=seafood).
 
 car_accessible(X) :- has_water_level(X,Y) ,  Y < 0.99 .
 
@@ -251,7 +262,7 @@ nearest_center(X , F , C) :- victim_coordinate(X,A,B) , aid_center_coordinate(C,
 
 
 
-
+flood_duration(V,D) :- victim_location(V,L),has_water_level(L,H),D is round(6.94*sqrt(H)).
 
 
 
@@ -259,4 +270,13 @@ is_his_rice_die(V) :- victim_plant_rice_type(V,E),victim_location(V,A),water_lev
 
 help_rice(V,T,A) :- is_his_rice_die(V) ,victim_plant_rice_type(V,T),victim_has_crop_quantity(V,A).
 
-% help_food(V,T,A) :- 
+help_food(V,T,A) :- flood_duration(V,D),edible(V,T), A is D * 3.
+
+supply(V,R,A,F,M) :- help_rice(V,R,A) ;help_food(V,F,M).
+
+
+
+
+
+
+
