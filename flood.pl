@@ -7,6 +7,11 @@ location(bantung).
 location(swangdandin).
 location(warichaphum).
 location(pangkome).
+location(atlantis).
+location(bangken).
+location(chatuchak).
+location(nonthaburi).
+location(ratchada).
 
 vehicle(4-wheel).
 vehicle(boat).
@@ -17,6 +22,13 @@ victim(rommadon_teedo).
 victim(tanapon_meesat).
 victim(akarachai_passavoranan).
 victim(roiboon_chaiyachit).
+victim(settapong).
+victim(kamalanon).
+victim(khanutchon).
+victim(john_doe).
+victim(jane_doe).
+
+heir(john_doe, jane_doe).
 
 career(rommadon_teedo,farmer).
 career(tanapon_meesat,farmer).
@@ -32,16 +44,31 @@ victim_has_crop_quantity(rommadon_teedo, 2000).
 victim_has_crop_quantity(tanapon_meesat, 3000).
 victim_has_crop_quantity(akarachai_passavoranan, 4532).
 victim_has_crop_quantity(roiboon_chaiyachit, 5649).
+victim_has_crop_quantity(settapong, 2351).
+victim_has_crop_quantity(kamalanon, 4322).
+victim_has_crop_quantity(khanutchon, 2415).
+victim_has_crop_quantity(john_doe, 5121).
+victim_has_crop_quantity(jane_doe, 0).
 
 victim_has_cultivated_area(rommadon_teedo, 5342).
 victim_has_cultivated_area(tanapon_meesat, 4359).
 victim_has_cultivated_area(akarachai_passavoranan, 4398).
 victim_has_cultivated_area(roiboon_chaiyachit, 3282).
+victim_has_cultivated_area(settapong, 4382).
+victim_has_cultivated_area(kamalanon, 6282).
+victim_has_cultivated_area(khanutchon, 4582).
+victim_has_cultivated_area(john_doe, 6382).
+victim_has_cultivated_area(jane_doe, 7282).
 
 victim_plant_rice_type(rommadon_teedo, "r010").
 victim_plant_rice_type(tanapon_meesat, "r011").
 victim_plant_rice_type(akarachai_passavoranan, "r022").
 victim_plant_rice_type(roiboon_chaiyachit, "r010").
+victim_plant_rice_type(settapong, "r010").
+victim_plant_rice_type(kamalanon, "r011").
+victim_plant_rice_type(khanutchon, "r022").
+victim_plant_rice_type(john_doe, "r023").
+victim_plant_rice_type(jane_doe, "r011").
 
 
 
@@ -67,6 +94,11 @@ has_water_level(bantung, 0.4).
 has_water_level(swangdandin, 0.34).
 has_water_level(warichaphum, 1.0).
 has_water_level(pangkome, 3.0).
+has_water_level(bangken, 0.46).
+has_water_level(atlantis, 1000).
+has_water_level(chatuchak, 1.3).
+has_water_level(nonthaburi, 0.34).
+has_water_level(ratchada, 0.13).
 
 
 
@@ -105,11 +137,21 @@ victim_location(rommadon_teedo,bantung).
 victim_location(tanapon_meesat,swangdandin).
 victim_location(akarachai_passavaranan,warichaphum).
 victim_location(roiboon_chaiyachit,pangkome).
+victim_location(khanutchon, atlantis).
+victim_location(kamalanon, ratchada).
+victim_location(settapong, nonthaburi).
+victim_location(john_doe, bangken).
+victim_location(jane_doe, chatuchak).
 
 victim_coordinate(rommadon_teedo,10,20).
 victim_coordinate(tanapon_meesat,2,100).
 victim_coordinate(akarachai_passavaranan,33,4).
 victim_coordinate(roiboon_chaiyachit,4,12).
+victim_coordinate(khanutchon, 6, 42).
+victim_coordinate(kamalanon, 8, 23).
+victim_coordinate(settapong, 5, 21).
+victim_coordinate(john_doe, 2 , 4).
+victim_coordinate(jane_doe, 5, 6).
 
 aid_center(a).
 aid_center(b).
@@ -129,11 +171,21 @@ birthdate(rommadon_teedo,01/01/2503).
 birthdate(tanapon_meesat,11/07/2534).
 birthdate(akarachai_passavoranan,02/11/2523).
 birthdate(roiboon_chaiyachit,31/03/2559).
+birthdate(khanutchon, 23/04/2000).
+birthdate(kamalanon, 23/04/2000).
+birthdate(settapong, 23/04/2000).
+birthdate(john_doe, 23/04/2000).
+birthdate(jane_doe, 23/04/2010).
 
 birthyear(rommadon_teedo,2503).
 birthyear(tanapon_meesat,2534).
 birthyear(akarachai_passavoranan,2523).
 birthyear(roiboon_chaiyachit,2559).
+birthyear(khanutchon, 2000).
+birthyear(kamalanon, 2000).
+birthyear(settapong, 2000).
+birthyear(john_doe, 2000).
+birthyear(jane_doe, 2010).
 
 health_condition(rommadon_teedo,sifiris).
 health_condition(tanapon_meesat,none).
@@ -207,14 +259,4 @@ is_his_rice_die(V) :- victim_plant_rice_type(V,E),victim_location(V,A),water_lev
 
 help_rice(V,T,A) :- is_his_rice_die(V) ,victim_plant_rice_type(V,T),victim_has_crop_quantity(V,A).
 
-help_food(V,T,A) :- 
-
-
-
-
-
-
-
-
-
-
+% help_food(V,T,A) :- 
