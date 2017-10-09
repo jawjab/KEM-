@@ -33,15 +33,15 @@ victim_has_crop_quantity(tanapon_meesat, 3000).
 victim_has_crop_quantity(akarachai_passavoranan, 4532).
 victim_has_crop_quantity(roiboon_chaiyachit, 5649).
 
-victim_has_cultivated_area(5148302313467, 5342).
-victim_has_cultivated_area(5721528510385, 4359).
-victim_has_cultivated_area(1865318712054, 4398).
-victim_has_cultivated_area(5148302313467, 3282).
+victim_has_cultivated_area(rommadon_teedo, 5342).
+victim_has_cultivated_area(tanapon_meesat, 4359).
+victim_has_cultivated_area(akarachai_passavoranan, 4398).
+victim_has_cultivated_area(roiboon_chaiyachit, 3282).
 
-victim_plant_rice_type(5148302313467, "r010").
-victim_plant_rice_type(5721528510385, "r022").
-victim_plant_rice_type(1865318712054, "r022").
-victim_plant_rice_type(5148302313467, "r010").
+victim_plant_rice_type(rommadon_teedo, "r010").
+victim_plant_rice_type(tanapon_meesat, "r011").
+victim_plant_rice_type(akarachai_passavoranan, "r022").
+victim_plant_rice_type(roiboon_chaiyachit, "r010").
 
 
 
@@ -60,10 +60,6 @@ description("r011","Middle water level tolerance").
 description("r022","MId-High water level tolerance").
 description("r023","High water level tolerance").
 
-location_id(bantung,1).
-location_id(swangdandin,2).
-location_id(warichaphum,3).
-location_id(pangkome,4).
 
 
 
@@ -104,15 +100,11 @@ fuel_capacity(boat, 100).
 fuel_capacity(jey_ski, 43).
 fuel_capacity(helicopter, 344).
 
-victim_id(rommadon_teedo,5148302313467).
-victim_id(tanapon_meesat,5721528510385).
-victim_id(akarachai_passavoranan,1865318712054).
-victim_id(roiboon_chaiyachit,5142424640041).
 
-victim_location_id(rommadon_teedo,1).
-victim_location_id(tanapon_meesat,2).
-victim_location_id(akarachai_passavaranan,3).
-victim_location_id(roiboon_chaiyachit,4).
+victim_location(rommadon_teedo,bantung).
+victim_location(tanapon_meesat,swangdandin).
+victim_location(akarachai_passavaranan,warichaphum).
+victim_location(roiboon_chaiyachit,pangkome).
 
 victim_coordinate(rommadon_teedo,10,20).
 victim_coordinate(tanapon_meesat,2,100).
@@ -168,7 +160,7 @@ expired_date(pasteurized_milk,02/04/2563).
 
 flood(X) :- location(X) , has_water_level(X,Y) , Y>1.
 
-supply_food(X) :- victim(X) , victim_location_id(X,Y) , location_id(A,Y) , flood(A).
+supply_food(X) :- victim(X) , victim_location(X,Y) ,flood(Y).
 
 sick(X) :- health_condition(X,Y) , not(Y=none).
 
@@ -176,7 +168,7 @@ supply_medicine(X) :- victim(X), sick(X).
 
 growable(X , Y) :-  water_level_tolerance(X,Z) ,  has_water_level(Y,W) , Z > W.
 
-supply_crops(X,Y) :- victim_location_id(X,Z) , location_id(A,Z) , growable(Y, A). 
+supply_crops(X,Y) :- victim_location(X,Z), growable(Y, Z). 
 
 age(X , Y) :- birthyear(X,Z),Y is 2560 - Z.
 
@@ -198,6 +190,31 @@ suitable_vehicle(X,A) :- not(car_accessible(X)),not(critical(X)) , has_max_water
 
 suitable_vehicle(X,A) :- not(car_accessible(X)),critical(X) , has_max_water_lvl_tolerance(A, 100).
 
-nearest_center(X , F , C) :- victim_coordinate(X,A,B) , aid_center_coordinate(C,D,E), F is ((D-A)*(D-A))+((E-B)*(E-B)),F < G.
+nearest_center(X , F , C) :- victim_coordinate(X,A,B) , aid_center_coordinate(C,D,E), F is ((D-A)*(D-A))+((E-B)*(E-B)),aid_center_coordinate(M,N,O),G is ((N-A)*(N-A))+((O-B)*(O-B)),M\=C,F < G.
 
-suitable_quantity_serve(A,B,C) :- victim_has_crop_quantity(A,B),victim_location_id(A,M),location_id(N,M),growable(C,N).
+
+
+
+
+
+
+
+
+
+
+
+is_his_rice_die(V) :- victim_plant_rice_type(V,E),victim_location(V,A),water_level_tolerance(E,T),has_water_level(A,L),T<L.
+
+help_rice(V,T,A) :- is_his_rice_die(V) ,victim_plant_rice_type(V,T),victim_has_crop_quantity(V,A).
+
+help_food(V,T,A) :- 
+
+
+
+
+
+
+
+
+
+
