@@ -85,7 +85,7 @@ has_water_level(ratchada, 0.13).
 
 victim_location(rommadon_teedo,bantung).
 victim_location(tanapon_meesat,swangdandin).
-victim_location(akarachai_passavaranan,warichaphum).
+victim_location(akarachai_passavoranan,warichaphum).
 victim_location(roiboon_chaiyachit,pangkome).
 victim_location(khanutchon, atlantis).
 victim_location(kamalanon, ratchada).
@@ -105,7 +105,7 @@ birthdate(jane_doe, 23/04/2010).
 
 birthyear(rommadon_teedo,2503).
 birthyear(tanapon_meesat,2534).
-birthyear(akarachai_passavoranan,2523).
+birthyear(akarachai_passavoranan,2443).
 birthyear(roiboon_chaiyachit,2559).
 birthyear(khanutchon, 2000).
 birthyear(kamalanon, 2000).
@@ -159,8 +159,8 @@ flood_duration(V,D) :- victim_location(V,L),has_water_level(L,H),D is round(6.94
 
 is_his_rice_die(V) :- victim_plant_rice_type(V,E),victim_location(V,A),water_level_tolerance(E,T),has_water_level(A,L),T<L.
 
-help_rice(V,T,A) :- is_his_rice_die(V) ,victim_plant_rice_type(V,T),victim_has_crop_quantity(V,A).
+help_rice(V,T,A) :- is_his_rice_die(V) ,victim_plant_rice_type(V,T),victim_has_cultivated_area(V,N),A is N*0.4356.
 
 help_food(V,T,A) :- flood_duration(V,D),edible(V,T), A is D * 3.
 
-supply(V,R,A,F,M) :- help_rice(V,R,A) ;help_food(V,F,M).
+supply(V,R,A,F,M) :- (help_rice(V,R,A) ;help_food(V,F,M)).
