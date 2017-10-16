@@ -13,6 +13,10 @@ The input usually is VictimName; the rule then suggests following goods that the
   * victim(khanutchon).
   * victim(john_doe).
   * victim(jane_doe).
+ * Example of supply rule.
+   * supply(akarachai_passavoranan,R,A,F,M).
+   * supply(rommadon_teedo,R,A,F,M).
+   * supply(roiboon_chaiyachit,R,A,F,M).
 
 ## Rule
 ```prolog
