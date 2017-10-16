@@ -17,6 +17,24 @@ The input usually is VictimName; the rule then suggests following goods that the
    * supply(akarachai_passavoranan,R,A,F,M).
    * supply(rommadon_teedo,R,A,F,M).
    * supply(roiboon_chaiyachit,R,A,F,M).
+## Members
+ 
+* Rommadon Teedo
+  * 5810545025
+* Tanapon Meesat
+  * 5810545408
+* Akarachai Passavoranan
+  * 5810545505
+* Roiboon Chaiyachit
+  * 5810546005
+* Settapong Peamlue
+  * 5810546048
+* Kan Kamalanon
+  * 5810546587
+* Khanutchon Ammawong
+  * 5810546609
+
+
 
 ## Rule
 ```prolog
