@@ -1,19 +1,18 @@
 # KEM-
 ---
-Food Subsidy Support during mid-post flood
+## Food Subsidy Support during mid-post flood
 The main functional rule is the supply() rule. It functions as suggestion rule which has parameters in format of: supply(VictimName, RiceType, RiceAmount, FoodType, FoodAmount)
 The input usually is VictimName; the rule then suggests following goods that the victim should receive including, rice and food both in type and amount.
-Example:
-All victims in KB.
-victim(rommadon_teedo).
-victim(tanapon_meesat).
-victim(akarachai_passavoranan).
-victim(roiboon_chaiyachit).
-victim(settapong).
-victim(kamalanon).
-victim(khanutchon).
-victim(john_doe).
-victim(jane_doe).
+* Example of all victims in KB:
+  * victim(rommadon_teedo).
+  * victim(tanapon_meesat).
+  * victim(akarachai_passavoranan).
+  * victim(roiboon_chaiyachit).
+  * victim(settapong).
+  * victim(kamalanon).
+  * victim(khanutchon).
+  * victim(john_doe).
+  * victim(jane_doe).
 
 ## Rule
 ```prolog
