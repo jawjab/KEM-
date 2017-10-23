@@ -36,11 +36,11 @@ The input usually is VictimName; the rule then suggests following goods that the
 
 
 
-## Rule
+## Rule (How it derived)
 ```prolog
 sick(X)
 Input​ ​ a ​ ​ name​ ​ of​ ​ person.
-Output​ ​ True​ ​ if​ ​ health_condition(name,disease)​ ​ and​ ​ disease​ ​ = ​ ​ none​ ​ .
+Output​ ​ True​ ​ if​ ​ health_condition(name,disease)​ ​ is equal true .
 
 age(X)
 Input​ ​ a ​ ​ name​ ​ of​ ​ person.
